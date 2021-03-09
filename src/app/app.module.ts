@@ -14,6 +14,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 import { InMemoryDataService } from "./in-memory-data.service";
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { PetsComponent } from './pets/pets.component';
+import { PetService } from './pet.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    PetsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
       dataEncapsulation: false
     })
   ],
-  providers: [HeroService, MessageService, InMemoryDataService],
+  providers: [HeroService, MessageService, InMemoryDataService, PetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
