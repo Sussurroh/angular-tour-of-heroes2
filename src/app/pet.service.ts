@@ -40,7 +40,7 @@ export class PetService {
 
   getPet(name: string): Observable<Pet> {
     const url = `${this.petsUrl}/${name}`;
-    this.messageService.add(`PetoService: fetched pet name=${name}`);
+    this.messageService.add(`PetService: fetched pet name=${name}`);
     return this.http.get<Pet>(url).pipe(
       tap(_ => this.log(`fetched pet name=${name}`)),
       catchError(this.handleError<Pet>(`getPet name=${name}`))
@@ -48,6 +48,6 @@ export class PetService {
   }
 
   private log(message: string): void {
-    this.messageService.add(`PetService: §{message}`);
+    this.messageService.add(`PetService: ${message}`);
   }
 }

@@ -37,9 +37,9 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    if (this.petService.getPet(this.petName)) {
-      this.hero.pet.name = this.petName;
-    }
+    this.petService
+      .getPet(this.petName)
+      .subscribe(peti => (this.hero.pet.name = peti.name));
     this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
   }
 }
