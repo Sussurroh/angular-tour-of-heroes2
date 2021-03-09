@@ -4,6 +4,8 @@ import { Location } from "@angular/common";
 
 import { HeroService } from "../hero.service";
 import { Hero } from "../hero";
+import { Pet } from "../pet";
+import { PetService } from "../pet.service";
 
 @Component({
   selector: "app-hero-detail",
@@ -12,10 +14,12 @@ import { Hero } from "../hero";
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero?: Hero;
+  petName: string;
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
+    private petService: PetService,
     private location: Location
   ) {}
 
@@ -33,6 +37,9 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
+    if (this.petService.getPet(this.petName)) {
+      this.hero.pet.name = this.petName;
+    }
     this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
   }
 }

@@ -38,6 +38,15 @@ export class PetService {
     };
   }
 
+  getPet(name: string): Observable<Pet> {
+    const url = `${this.petsUrl}/${name}`;
+    this.messageService.add(`PetoService: fetched pet name=${name}`);
+    return this.http.get<Pet>(url).pipe(
+      tap(_ => this.log(`fetched pet name=${name}`)),
+      catchError(this.handleError<Pet>(`getPet name=${name}`))
+    );
+  }
+
   private log(message: string): void {
     this.messageService.add(`PetService: §{message}`);
   }
