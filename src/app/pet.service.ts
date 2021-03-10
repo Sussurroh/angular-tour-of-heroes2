@@ -24,7 +24,7 @@ export class PetService {
       catchError(this.handleError<Pet[]>("getPets", []))
     );
   }
-
+  
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
@@ -40,6 +40,7 @@ export class PetService {
 
   getPet(name: string): Observable<Pet> {
     const url = `${this.petsUrl}/${name}`;
+    
     this.messageService.add(`PetService: fetched pet name=${name}`);
     return this.http.get<Pet>(url).pipe(
       tap(_ => this.log(`fetched pet name=${name}`)),
