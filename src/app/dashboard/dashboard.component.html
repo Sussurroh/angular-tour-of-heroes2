@@ -2,6 +2,7 @@
 <div class="heroes-menu">
   <a *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">
     {{hero.name}}
+    <div *ngIf="hero.pet"> <br> Pet: {{hero.pet.name}} </div>
   </a>
 </div>
 

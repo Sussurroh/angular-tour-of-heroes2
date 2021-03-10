@@ -14,7 +14,7 @@ import { PetService } from "../pet.service";
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero?: Hero;
-  petName: string;
+  pets: Pet[];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +25,7 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getHero();
+    this.petService.getPets().subscribe(pets => (this.pets = pets));
   }
 
   getHero(): void {
@@ -37,10 +38,11 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.petService
-      .getPet(this.petName)
-      .subscribe(peti => (this.hero.pet.name = peti.name));
     this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+  }
+
+  comparePet(pet1: Pet, pet2: Pet): boolean {
+    return pet1 && pet2 ? pet1.name === pet2.name : pet1 === pet2;
   }
 }
 

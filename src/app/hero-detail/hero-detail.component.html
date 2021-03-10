@@ -2,6 +2,7 @@
 
   <h2>{{hero.name | uppercase}} Details</h2>
   <div><span>id: </span>{{hero.id}}</div>
+  <div *ngIf="hero.pet"><span>petname: </span>{{hero.pet.name}}</div>
   <div>
     <label for="hero-name">Hero name: </label>
     <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
@@ -9,9 +10,10 @@
 
   <div>
     <label for="petName">Pet name: </label>
-    <input id="petName" [(ngModel)]="petName" placeholder="Pet name">
+    <select name="PetSelect" [compareWith] = "comparePet" [(ngModel)] = "hero.pet">
+      <option *ngFor="let pet of pets" [ngValue]="pet" >{{pet.name}}</option>
+    </select>
   </div>
-
 
 </div>
 
